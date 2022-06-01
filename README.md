@@ -14,6 +14,8 @@
 저자만 가능하게 하려면 findByName 으로 찾도록 함 이름이 일치하는지!!
 로그인 한 상태에서의 리스트 url이 필요함 /{user}/list
 https://doublesprogramming.tistory.com/99
+공지사항 넣기
+로그아웃 넣기
 마지막엔 계속해서 등록가능하도록 dll-auto update로 바꾼다
 
 </pre>
