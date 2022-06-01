@@ -11,6 +11,8 @@
 <pre>
 컨트롤러 단에서 저자를 매핑해준다.
 저자만 업데이트 삭제 가능하게 변경
+저자만 가능하게 하려면 findByName 으로 찾도록 함 이름이 일치하는지!!
+로그인 한 상태에서의 리스트 url이 필요함 /{user}/list
 https://doublesprogramming.tistory.com/99
 마지막엔 계속해서 등록가능하도록 dll-auto update로 바꾼다
 
