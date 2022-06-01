@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="py-5 text-center bg-secondary text-white">
+    <h1>회원가입</h1>
+</div><hr>
+<form role="form" action="/signup" method="post" class="bg-warning p-2 text-black bg-opacity-50">
+    <div class="form-floating mb-3" >
+        <label for="inputName">Name</label>
+        <input id="inputName" name="name"
+               type="text" class="form-control">
+        이름을 입력하세요!
+    </div>
+    <div class="form-floating mb-3" >
+        <label for="inputEmail">Email</label>
+        <input id="inputEmail" name="email"
+               type="email" class="form-control" placeholder="aaa@gmail.com">
+        이메일을 입력하세요!
+    </div>
+    <div class="form-floating mb-3">
+        <label for="inputPassword">Password</label>
+        <input id="inputPassword" name="password"
+               type="password" class="form-control">
+        비밀 번호는 문자와 숫자를 혼용하시면 더 좋습니다!!
+    </div><br>
+    <button class="btn btn-primary btn-lg" type="submit">SignUp</button>
+</form>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../css/bootstrap.min.css"></script>
+</body>
+</html>
