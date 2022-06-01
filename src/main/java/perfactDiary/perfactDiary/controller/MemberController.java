@@ -1,19 +1,29 @@
 package perfactDiary.perfactDiary.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import perfactDiary.perfactDiary.domain.Member;
 import perfactDiary.perfactDiary.dto.MemberDto;
 import perfactDiary.perfactDiary.service.MemberService;
+import perfactDiary.perfactDiary.session.LoginService;
+import perfactDiary.perfactDiary.session.SessionConst;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
+    private final LoginService loginService;
 
     @GetMapping("/signup")
     public String signupPage() {
@@ -30,6 +40,7 @@ public class MemberController {
         memberDto.setEmail(email);
         memberDto.setPassword(password);
         memberService.saveMember(memberDto);
+        log.info("회원 가입 성공!!");
         return "board/login.html";
     }
 
@@ -42,9 +53,21 @@ public class MemberController {
     findByEmail 로 아이디 불러와서 pw 맞는지 벨리데이션해야함
      */
     @PostMapping("/login")
-    public String login(@RequestParam("email") String email,
-                        @RequestParam("password") String password) {
+    public String login(
+            @Validated MemberDto memberDto,
+            BindingResult bindingResult,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            HttpServletRequest request
+            ) {
+        Member loginMember = loginService.login(email, password);
 
+        if(loginMember == null) {
+            bindingResult.reject("loginFail", "아이디 비밀번호가 잘못됬습니다.");
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
         return "redirect:/";
     }
 

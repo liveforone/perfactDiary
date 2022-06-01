@@ -24,6 +24,9 @@ public class Member {
 
     private String password;
 
+    @Transient  //db저장안함
+    private String loginMember;
+
     @Builder
     public Member(Long id, String name, String email, String password) {
         this.id = id;
