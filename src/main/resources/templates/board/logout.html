@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>로그아웃</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="py-5 text-center bg-secondary text-white">
+    <h1>로그아웃 합니다. 또 일기장을 방문해주세요^^</h1>
+</div><hr>
+<form role="form" action="/logout" method="post" class="bg-success p-2 text-black bg-opacity-50">
+    <button class="btn btn-primary btn-lg" type="submit">Logout</button>
+</form>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../css/bootstrap.min.css"></script>
+</body>
+</html>

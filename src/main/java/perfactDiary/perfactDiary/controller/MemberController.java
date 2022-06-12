@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import perfactDiary.perfactDiary.domain.Member;
 import perfactDiary.perfactDiary.dto.MemberDto;
+import perfactDiary.perfactDiary.repository.MemberRepository;
 import perfactDiary.perfactDiary.service.MemberService;
 import perfactDiary.perfactDiary.session.LoginService;
 import perfactDiary.perfactDiary.session.SessionConst;
@@ -24,6 +25,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final LoginService loginService;
+    private final MemberRepository memberRepository;
 
     @GetMapping("/signup")
     public String signupPage() {
@@ -68,6 +70,20 @@ public class MemberController {
 
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logoutPage() {
+        return "board/logout.html";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        log.info("로그아웃");
+        HttpSession session = request.getSession();
+        session.invalidate();
+
         return "redirect:/";
     }
 
